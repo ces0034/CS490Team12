@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="cs490.sanderlin.ShellLayout">
+  <grid id="27dc6" binding="panelBackground" layout-manager="GridLayoutManager" row-count="4" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="0" left="0" bottom="0" right="0"/>
+    <constraints>
+      <xy x="20" y="20" width="566" height="434"/>
+    </constraints>
+    <properties>
+      <background color="-991770"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <component id="8afa3" class="javax.swing.JButton" binding="startSystemButton" default-binding="true">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Start System"/>
+        </properties>
+      </component>
+      <component id="fce16" class="javax.swing.JButton" binding="pauseSystemButton" default-binding="true">
+        <constraints>
+          <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="109" height="30"/>
+          </grid>
+        </constraints>
+        <properties>
+          <text value="Pause System"/>
+        </properties>
+      </component>
+      <component id="f9ea0" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <foreground color="-13498837"/>
+          <horizontalAlignment value="0"/>
+          <text value="System Paused"/>
+        </properties>
+      </component>
+      <component id="341a8" class="javax.swing.JTextArea" binding="textArea">
+        <constraints>
+          <grid row="3" column="0" row-span="1" col-span="4" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="50"/>
+          </grid>
+        </constraints>
+        <properties>
+          <background color="-2438708"/>
+          <foreground color="-12709823"/>
+          <text value="Text  Area"/>
+        </properties>
+      </component>
+      <component id="c618c" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="193" height="16"/>
+          </grid>
+        </constraints>
+        <properties>
+          <background color="-991770"/>
+          <foreground color="-12709823"/>
+          <text value="1 Time Unit ="/>
+        </properties>
+      </component>
+      <component id="57c" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="1" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <foreground color="-13498837"/>
+          <horizontalAlignment value="0"/>
+          <horizontalTextPosition value="0"/>
+          <text value="MS"/>
+        </properties>
+      </component>
+      <component id="3f361" class="javax.swing.JTextField" binding="typeNumberHereTextField" default-binding="true">
+        <constraints>
+          <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties>
+          <background color="-2438708"/>
+          <foreground color="-12709823"/>
+          <text value="Type Number Here"/>
+        </properties>
+      </component>
+      <component id="c5f76" class="javax.swing.JTextPane" binding="textAreaTextPane" default-binding="true">
+        <constraints>
+          <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="50"/>
+          </grid>
+        </constraints>
+        <properties>
+          <background color="-2438708"/>
+          <foreground color="-13498837"/>
+          <text value="Text Area"/>
+        </properties>
+      </component>
+      <component id="503bd" class="javax.swing.JTable" binding="table1" default-binding="true">
+        <constraints>
+          <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="221"/>
+          </grid>
+        </constraints>
+        <properties>
+          <autoCreateRowSorter value="true"/>
+          <background color="-2438708"/>
+          <dropMode value="USE_SELECTION"/>
+          <fillsViewportHeight value="false"/>
+          <foreground color="-13498837"/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+</form>
