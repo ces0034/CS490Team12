@@ -17,7 +17,6 @@ public class OS {
                 String data = dataReader.nextLine();
                 String[] line = data.split(",", 0);
                 processTable.add(new Process(line[0], line[1], line[2], line[3]));
-                System.out.println(data);
             }
             dataReader.close();
         } catch (FileNotFoundException e) { // notifies the user if the file can't be found
@@ -32,40 +31,37 @@ public class OS {
         int selection = 0;
         boolean end = false;
         boolean processing = false;
-         int status[] = new int[processTable.size()];
-         for(int i = 0; i < processTable.size(); i++){
-             status[i] = 0;
-         }
-         while(!end){
-             if(!processing){
-                 for(int i = 0; i < processTable.size(); i++){
-                     if(time >= processTable.get(i).getArrivalTime()){
-                         selection = i;
-                         timeRemaining = processTable.get(i).getServiceTime();
-                         break;
-                     }
-                 }
-                 processing = true;
-             }
-             else{
-                 timeRemaining = timeRemaining - timeUnit;
-                 if(timeRemaining <= 0) {
-                     status[selection] = 1;
-                     processing = false;
-                 }
-             }
-             time = time + timeUnit;
-             //update GUI
-             end = true;
-             for(int i = 0; i < processTable.size(); i++){
-                 if(status[i] == 0)
-                     end = false;
-             }
-         }
-    }
+        int status[] = new int[processTable.size()];
+        for(int i = 0; i < processTable.size(); i++){
+            status[i] = 0;
+        }
+        while(!end){
+            if(!processing){
+                for(int i = 0; i < processTable.size(); i++){
+                    if(time >= processTable.get(i).getArrivalTime() && status[i]!=1){
+                        selection = i;
+                        timeRemaining = processTable.get(i).getServiceTime();
+                        processing = true;
+                        break;
+                    }
+                }
 
-    public static void main(String[]args){
-        OS test = new OS();
-        test.storeProcesses();
+            }
+            else{
+                timeRemaining = timeRemaining - timeUnit;
+                if(timeRemaining <= 0) {
+                    status[selection] = 1;
+                    processing = false;
+                }
+            }
+            time = time + timeUnit;
+            System.out.println(time);
+            System.out.println(processTable.get(0).getId());
+            end = true;
+            for(int i = 0; i < processTable.size(); i++){
+                if(status[i] == 0)
+                    end = false;
+            }
+        }
     }
 }
