@@ -1,19 +1,31 @@
 import javax.swing.*;
+import java.awt.*;
+
+public class Main{
 
 
-public class Main {
 
-    public static void main(String[] args)
+   public static void main(String[] args)
     {
+        EventQueue.invokeLater(new TextAreaTest());
+        //EventQueue.invokeLater(new TableTest());
+
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run()
             {
-                createGUI();
+               // createGUI();
+               // testOS();
+
             }
         });
     }
 
+    private static void testOS()
+    {
+        OS test = new OS();
+        test.storeProcesses();
+    }
     private static void createGUI()
     {
         GUILayout ui = new GUILayout();
@@ -26,5 +38,6 @@ public class Main {
         frame.setVisible(true);
 
     }
+
 
 }
