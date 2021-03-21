@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="GUILayout">
-  <grid id="27dc6" binding="rootPanel" layout-manager="GridLayoutManager" row-count="5" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+  <grid id="27dc6" binding="rootPanel" layout-manager="GridLayoutManager" row-count="6" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="15" left="15" bottom="15" right="15"/>
     <constraints>
-      <xy x="20" y="20" width="757" height="512"/>
+      <xy x="20" y="20" width="910" height="512"/>
     </constraints>
     <properties>
       <background color="-13878713"/>
@@ -63,28 +63,39 @@
       <grid id="6b680" binding="bottomTextPanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="5" bottom="0" right="5"/>
         <constraints>
-          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <background color="-13878713"/>
         </properties>
         <border type="none"/>
         <children>
-          <component id="5c48a" class="javax.swing.JTextPane" binding="textPaneBottom">
+          <scrollpane id="eb089">
             <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                <preferred-size width="150" height="50"/>
-              </grid>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <background color="-11147583"/>
-              <foreground color="-13878713"/>
-              <text value="Text Goes Here...."/>
+              <background color="-167310"/>
             </properties>
-          </component>
+            <border type="none"/>
+            <children>
+              <component id="f5855" class="javax.swing.JTable" binding="table2">
+                <constraints/>
+                <properties>
+                  <background color="-1507352"/>
+                  <fillsViewportHeight value="false"/>
+                  <foreground color="-13878713"/>
+                  <gridColor color="-167310"/>
+                  <preferredScrollableViewportSize width="450" height="225"/>
+                  <selectionBackground color="-167310"/>
+                  <selectionForeground color="-1507352"/>
+                </properties>
+              </component>
+            </children>
+          </scrollpane>
         </children>
       </grid>
-      <grid id="2deaf" binding="inputPanel" layout-manager="GridLayoutManager" row-count="1" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="2deaf" binding="inputPanel" layout-manager="GridLayoutManager" row-count="1" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="45"/>
         <constraints>
           <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
@@ -96,7 +107,7 @@
         <children>
           <component id="43ba5" class="javax.swing.JTextField" binding="unitTextField">
             <constraints>
-              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
               </grid>
             </constraints>
@@ -108,7 +119,7 @@
           </component>
           <component id="391cb" class="javax.swing.JLabel" binding="inputLabel">
             <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
                 <preferred-size width="320" height="16"/>
               </grid>
             </constraints>
@@ -120,11 +131,20 @@
           </component>
           <component id="8c0fd" class="javax.swing.JLabel" binding="inputUnitLabel">
             <constraints>
-              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <foreground color="-1"/>
               <text value="MS"/>
+            </properties>
+          </component>
+          <component id="43313" class="javax.swing.JLabel" binding="queueLabel">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <foreground color="-1"/>
+              <text value="Priority Queue"/>
             </properties>
           </component>
         </children>
@@ -156,7 +176,7 @@
                   <background color="-1507352"/>
                   <foreground color="-13878713"/>
                   <gridColor color="-11147583"/>
-                  <preferredScrollableViewportSize width="450" height="200"/>
+                  <preferredScrollableViewportSize width="450" height="225"/>
                   <selectionBackground color="-11147583"/>
                   <selectionForeground color="-1"/>
                   <showVerticalLines value="false"/>
@@ -193,7 +213,7 @@
       <grid id="ca0d0" binding="rightTextPanel" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
-          <grid row="0" column="1" row-span="5" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <grid row="0" column="1" row-span="6" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <background color="-13878713"/>
@@ -201,32 +221,50 @@
         </properties>
         <border type="none"/>
         <children>
-          <component id="1a473" class="javax.swing.JTextPane" binding="textGoesHereTextPane" default-binding="true">
+          <scrollpane id="b080f">
             <constraints>
-              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                <preferred-size width="150" height="50"/>
-              </grid>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
             </constraints>
-            <properties>
-              <background color="-10964577"/>
-              <foreground color="-13878713"/>
-              <text value="Text Goes Here.."/>
-            </properties>
-          </component>
-          <component id="a40b9" class="javax.swing.JTextPane" binding="textGoesHereTextPane1" default-binding="true">
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="92c7e" class="javax.swing.JTextArea" binding="textArea1" default-binding="true">
+                <constraints/>
+                <properties>
+                  <background color="-6624037"/>
+                  <lineWrap value="true"/>
+                  <text value=""/>
+                  <wrapStyleWord value="false"/>
+                </properties>
+              </component>
+            </children>
+          </scrollpane>
+          <scrollpane id="61e52">
             <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                <preferred-size width="150" height="50"/>
-              </grid>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
             </constraints>
-            <properties>
-              <background color="-6624037"/>
-              <foreground color="-13878713"/>
-              <text value="Text Goes Here..."/>
-            </properties>
-          </component>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="3d830" class="javax.swing.JTextArea" binding="textArea2" default-binding="true">
+                <constraints/>
+                <properties>
+                  <background color="-6624037"/>
+                </properties>
+              </component>
+            </children>
+          </scrollpane>
         </children>
       </grid>
+      <component id="64c70" class="javax.swing.JLabel" binding="labelProcess">
+        <constraints>
+          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <foreground color="-1"/>
+          <text value="Process Table"/>
+        </properties>
+      </component>
     </children>
   </grid>
 </form>
