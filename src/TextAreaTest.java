@@ -39,7 +39,7 @@ public class TextAreaTest implements Runnable{
 
                     model.insertRow(model.getRowCount(), new Object[]{"Process "+i, "A" +i, "B"+i,"C"+i});
                     i++;
-                    Thread.sleep(1000);
+                    Thread.sleep(0);
                 }
             }
             catch(InterruptedException e)

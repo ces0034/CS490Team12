@@ -7,9 +7,11 @@ public class Main{
 
    public static void main(String[] args)
     {
-        EventQueue.invokeLater(new TextAreaTest());
+        //EventQueue.invokeLater(new TextAreaTest());
         //EventQueue.invokeLater(new TableTest());
-
+        OS os = new OS();
+        os.storeProcesses();
+        EventQueue.invokeLater(new OS());
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run()

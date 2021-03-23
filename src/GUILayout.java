@@ -29,15 +29,15 @@ public class GUILayout {
 
     private Object[][] data =
             {
-                    {"Process 1", "100ms","1","AAAAA"},
-                    {"Process 2", "10ms","2","BBBBB"},
-                    {"Process 3", "50ms","3","CCCCC"},
-
             };
 
    private DefaultTableModel tableModel = new DefaultTableModel(
             data,
-            new String[]{"Process Name", "Time","Priority","Example"}
+            new String[]{"Process Name", "Arrival Time","Service Time","Priority"}
+    );
+    private DefaultTableModel tableModel2 = new DefaultTableModel(
+            data,
+            new String[]{"Process Name", "Arrival Time","Service Time","Priority"}
     );
 
 
@@ -65,7 +65,10 @@ public class GUILayout {
     {
         return tableModel;
     }
-
+    public DefaultTableModel getTableModel2()
+    {
+        return tableModel2;
+    }
     public void createTable()
     {
 
@@ -81,6 +84,6 @@ public class GUILayout {
                         {"Process 3", "50ms","3","CCCCC"},
 
                 };
-        table2.setModel(tableModel);
+        table2.setModel(tableModel2);
     }
 }
