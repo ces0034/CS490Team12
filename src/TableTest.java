@@ -30,7 +30,7 @@ public class TableTest implements Runnable {
                 while(true)
                 {
 
-                    tableModel.insertRow(tableModel.getRowCount(), new Object[]{"Process New", "A", "B","C"});
+                    tableModel.insertRow(tableModel.getRowCount(), new Object[]{"duplicates.Process New", "A", "B","C"});
 
                     Thread.sleep(1000);
                 }

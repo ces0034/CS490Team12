@@ -262,7 +262,7 @@
         </constraints>
         <properties>
           <foreground color="-1"/>
-          <text value="Process Table"/>
+          <text value="duplicates.Process Table"/>
         </properties>
       </component>
     </children>

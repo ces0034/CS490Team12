@@ -33,11 +33,11 @@ public class GUILayout {
 
    private DefaultTableModel tableModel = new DefaultTableModel(
             data,
-            new String[]{"Process Name", "Arrival Time","Service Time","Priority"}
+            new String[]{"duplicates.Process Name", "Arrival Time","Service Time","Priority"}
     );
     private DefaultTableModel tableModel2 = new DefaultTableModel(
             data,
-            new String[]{"Process Name", "Arrival Time","Service Time","Priority"}
+            new String[]{"duplicates.Process Name", "Arrival Time","Service Time","Priority"}
     );
 
 
@@ -79,9 +79,9 @@ public class GUILayout {
         //Test Data
         Object[][] data =
                 {
-                        {"Process 1", "100ms","1","AAAAA"},
-                        {"Process 2", "10ms","2","BBBBB"},
-                        {"Process 3", "50ms","3","CCCCC"},
+                        {"duplicates.Process 1", "100ms","1","AAAAA"},
+                        {"duplicates.Process 2", "10ms","2","BBBBB"},
+                        {"duplicates.Process 3", "50ms","3","CCCCC"},
 
                 };
         table2.setModel(tableModel2);

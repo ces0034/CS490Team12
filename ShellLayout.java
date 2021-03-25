@@ -5,7 +5,7 @@ import javax.swing.*;
 public class ShellLayout {
     //for building the table later
     Object[][] data = {};
-    String[] columnNames = {"Process Name","Service Name"};
+    String[] columnNames = {"duplicates.Process Name","Service Name"};
 
     //all the buttons for the forms **need to be updated with better names
     private JButton startSystemButton;

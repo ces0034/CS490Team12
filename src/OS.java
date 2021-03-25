@@ -7,7 +7,7 @@ import java.util.Vector;
 
 public class OS implements Runnable{
     private Vector<Process> processTable;
-    String filename = "C:/Users/Carolyn/IdeaProjects/Team12_Project_490/src/file.txt";
+    String filename = "C:\\Users\\Paul\\IdeaProjects\\CS490Team12\\src\\file.txt";
     GUILayout ui = new GUILayout();
     JTextArea area1 = ui.getJTextAreaOne();
     JTextArea area2 = ui.getJTextAreaTwo();
@@ -98,42 +98,47 @@ public class OS implements Runnable{
                     int time = 0;
                     int timeRemaining = 0;
                     int selection = 0;
+                    double currentThroughput;
                     boolean end = false;
                     boolean processing = false;
                     int status[] = new int[processTable.size()];
-                    for(int i = 0; i < processTable.size(); i++){
-                        status[i] = 0;
+                    for(int i = 0; i < processTable.size(); i++){ //initialization loop
+                        status[i] = 0; //initializes status of each process to unfinished
                         System.out.println(processTable.get(i).getId());
                         String textID = processTable.get(i).getId();
                         model.insertRow(model.getRowCount(), new Object[]{processTable.get(i).getId(), processTable.get(i).getArrivalTime(), processTable.get(i).getServiceTime(),processTable.get(i).getPriority()});
                     }
                     while(!end){
-                        if(!processing) {
+                        if(!processing) { //selects a process to run
                             for (int i = 0; i < processTable.size(); i++) {
-                                if (time >= processTable.get(i).getArrivalTime() && status[i] != 1) {
+                                if (time >= processTable.get(i).getArrivalTime() && status[i] != 1) { //selects fist process that hasn't finished
                                     selection = i;
-                                    timeRemaining = processTable.get(i).getServiceTime();
+                                    timeRemaining = processTable.get(i).getServiceTime(); //saves service time to calculate how much time remains
                                     processing = true;
                                     model2.insertRow(model2.getRowCount(), new Object[]{processTable.get(i).getId(), processTable.get(i).getArrivalTime(), processTable.get(i).getServiceTime(), processTable.get(i).getPriority()});
                                     break;
                                 }
                             }
                         }
-                        else{
-                            timeRemaining = timeRemaining - timeUnit;
-                            if(timeRemaining <= 0) {
-                                status[selection] = 1;
-                                processing = false;
+                        if(processing){ //calculates process progress
+                            timeRemaining = timeRemaining - timeUnit; //decrements remaining time
+                            if(timeRemaining <= 0) { //sets process status to finished and tells the processor to select the next process
+                                status[selection] = 1; //updates selected process status to finished
+                                processTable.get(selection).setFinishTime(time); //sets finish time
+                                processTable.get(selection).setTAT(time); //sets turnaround time and normalized turnaround time
+                                processing = false; //stops processing
                             }
                         }
-                        time = time + timeUnit;
                         System.out.println(time);
-
-                        end = true;
-                        for(int i = 0; i < processTable.size(); i++){
-                            if(status[i] == 0)
-                                end = false;
+                        end = true; //sets end to true because it's easier to check if the loop shouldn't end
+                        currentThroughput = 0; //resets for incrementation
+                        for(int i = 0; i < processTable.size(); i++){ //checks if process should end
+                            if(status[i] == 0) //program continues processing until all all processes are complete
+                                end = false; //end is false if any process is unfinished
+                            else currentThroughput++; //increments for each completed process
                         }
+                        currentThroughput = currentThroughput/time; //divides number of finished processes by time
+                        time = time + timeUnit; //increments time
 
                         area2.append("Hello, This is a thread!" + i +"\n");
 

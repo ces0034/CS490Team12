@@ -37,7 +37,7 @@ public class TextAreaTest implements Runnable{
                     area1.append(new java.util.Date().toString()+"\n");
                     area1.append("Hello, This is a thread!\n");
 
-                    model.insertRow(model.getRowCount(), new Object[]{"Process "+i, "A" +i, "B"+i,"C"+i});
+                    model.insertRow(model.getRowCount(), new Object[]{"duplicates.Process "+i, "A" +i, "B"+i,"C"+i});
                     i++;
                     Thread.sleep(0);
                 }
