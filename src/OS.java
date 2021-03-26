@@ -173,7 +173,8 @@ public class OS implements Runnable {
                             for (int i = 0; i < totalProcess; i++) { //checks if process should end
                                 if (!queue.isEmpty()) //program continues processing until all all processes are complete
                                     end = false; //end is false if any process is unfinished
-                                else currentThroughput++; //increments for each completed process
+                                if (status[i] == 1)
+                                    currentThroughput++; //increments for each completed process
                             }
                             currentThroughput = currentThroughput / time; //divides number of finished processes by time
                             time = time + timeUnit; //increments time
@@ -249,7 +250,8 @@ public class OS implements Runnable {
                             for (int i = 0; i < totalProcess; i++) { //checks if process should end
                                 if (!queue.isEmpty()) //program continues processing until all all processes are complete
                                     end = false; //end is false if any process is unfinished
-                                else currentThroughput++; //increments for each completed process
+                                if (status[i] == 1)
+                                    currentThroughput++; //increments for each completed process
                             }
                             currentThroughput = currentThroughput / time; //divides number of finished processes by time
                             JLabel ctp = ui.getThroughputLabel();
