@@ -44,8 +44,8 @@ public class Process {
     } //gets turnaround time
 
     public void setTAT(int time){
-        TAT = time - finishTime;
-        nTAT = TAT/arrivalTime;
+        TAT = finishTime - arrivalTime;
+        nTAT = TAT/serviceTime;
     } //sets turnaround time and normalized turnaround time
 
     public double getnTAT(){
