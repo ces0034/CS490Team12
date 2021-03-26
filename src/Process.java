@@ -1,3 +1,5 @@
+import java.text.DecimalFormat;
+
 public class Process {
 
     //variables
@@ -46,6 +48,8 @@ public class Process {
     } //sets turnaround time and normalized turnaround time
 
     public double getnTAT(){
-        return nTAT;
+        DecimalFormat df = new DecimalFormat("###.###");
+        nTAT = Double.parseDouble(df.format(nTAT));
+        return (nTAT);
     } //gets normalized turnaround time
 }
