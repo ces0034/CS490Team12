@@ -2,15 +2,16 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class GlobalQueue {
+
     static Queue<Process> queue = new LinkedList<Process>();
-    private static GlobalQueue globalQInstance = null;
+   /*private static GlobalQueue globalQInstance = null;
 
     public static GlobalQueue getStreamInstance() {
     if (queue== null) {
        globalQInstance = new GlobalQueue();
     }
 		return globalQInstance;
-}
+}*/
     public Queue<Process> get()
     {
         return queue;
@@ -27,32 +28,32 @@ public class GlobalQueue {
 
     public void remove(Process process)
     {
-       // synchronized(queue)
-        //{
+       synchronized(queue)
+        {
             queue.remove(process);
-       // }
+        }
     }
     public Process peek()
     {
-        //synchronized(queue) {
+        synchronized(queue) {
             Process process = queue.peek();
             return process;
-        //}
+        }
     }
 
     public Process poll()
     {
-        //synchronized(queue) {
+        synchronized(queue) {
             Process process = queue.poll();
             return process;
-        //}
+        }
     }
 
     public boolean isEmpty()
     {
-       // synchronized(queue) {
+       synchronized(queue) {
             return queue.isEmpty();
-       // }
+       }
     }
 
     public int getTotalSize()

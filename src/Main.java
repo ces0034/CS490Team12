@@ -1,45 +1,28 @@
 import javax.swing.*;
-import java.awt.*;
 
+//opens up the Enter File Path Form
 public class Main{
 
 
 
    public static void main(String[] args)
     {
-        //EventQueue.invokeLater(new TextAreaTest());
-        //EventQueue.invokeLater(new TableTest());
-        OS os = new OS();
-        os.storeProcesses();
-        EventQueue.invokeLater(new OS());
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run()
-            {
-               // createGUI();
-               // testOS();
+        createEnterFile(); //create and launch the enter file path
 
-            }
-        });
     }
 
-    private static void testOS()
+    //packs the Enter File Path Form and sets it to visible
+    private static void createEnterFile()
     {
-        OS test = new OS();
-        test.storeProcesses();
-    }
-    private static void createGUI()
-    {
-        GUILayout ui = new GUILayout();
-        JPanel root = ui.getRootPanel();
-        JFrame frame = new JFrame();
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setContentPane(root);
-        frame.pack();
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
+        EnterFile ui  = new EnterFile(); //create a new enter file form
+        JPanel root = ui.getRootPanel(); //get the rootpanel
+        JFrame frame = new JFrame(); //create a jframe
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //exits when you hit the close button
+        frame.setContentPane(root); //set the content pane to the root panel
+        frame.pack(); //pack
+        frame.setLocationRelativeTo(null); //
+        frame.setVisible(true); // set to visible (display it to the screen)
 
     }
-
 
 }
