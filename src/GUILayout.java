@@ -1,5 +1,7 @@
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 
 public class GUILayout {
@@ -57,6 +59,8 @@ public class GUILayout {
             new String[]{"Process Name", "Arrival Time", "Service Time", "Finish Time", "TAT", "nTAT"}
     );
 
+
+
     //create the tables in the GUI
     public GUILayout() {
         createTable();
@@ -84,10 +88,13 @@ public class GUILayout {
     {
         return unitTextField;
     }
+
     public JButton getUpdateButton()
     {
         return updateButton;
     }
+    public JButton getPauseButton() { return pauseButton; }
+    public JButton getStartButton() { return startButton; }
 
     public JPanel getRootPanel() {
         return rootPanel;
@@ -111,4 +118,3 @@ public class GUILayout {
 
 
 }
-

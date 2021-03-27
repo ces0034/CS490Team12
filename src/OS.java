@@ -28,6 +28,8 @@ public class OS implements Runnable {
     private DefaultTableModel model2 = ui.getTableModel2(); // to update table 2
     private JButton button = ui.getUpdateButton(); //create a button to put a listener on it
     private DecimalFormat df = new DecimalFormat("#0.###########"); // to format the current throughput
+    private JButton pauseButton = ui.getPauseButton();
+    private JButton startButton = ui.getStartButton();
 
     //the button listener to update the time unit
     public OS() {
@@ -35,6 +37,36 @@ public class OS implements Runnable {
             @Override
             public void actionPerformed(ActionEvent e) {
                 timeUnit = Integer.parseInt((ui.getUnitTextField().getText())); //when the button is pushed
+            }
+        });
+    }
+
+    public void Pause() {
+        pauseButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                /*try {
+                    CPUOne.wait(); //when the button is pushed
+                    CPUTwo.wait(); //when the button is pushed
+                } catch (InterruptedException interruptedException) {
+                    interruptedException.printStackTrace();
+                }*/
+                System.out.println("Pause button is pressed.");
+            }
+        });
+    }
+
+    public void Start() {
+        startButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                /*try {
+                    CPUOne.notify(); //when the button is pushed
+                    CPUTwo.notify(); //when the button is pushed
+                } catch (InterruptedException interruptedException) {
+                    interruptedException.printStackTrace();
+                }*/
+                System.out.println("Start button is pressed.");
             }
         });
     }
@@ -64,7 +96,12 @@ public class OS implements Runnable {
         addToQueue(); //add the processes  the queue
         new Thread(CPUTwo).start(); //start thread one
         new Thread(CPUOne).start(); //start thread two
-
+        synchronized(this) {
+            Pause();
+        }
+        synchronized(this) {
+            Start();
+        }
     }
     //---------------FOR: Storing Processes
 
@@ -131,7 +168,7 @@ public class OS implements Runnable {
                             if (timeRemaining <= 0) { //sets process status to finished and tells the processor to select the next process
                                 Process process = queue.poll();
                                 area1.setText("CPU One just Processed: " + process.getId() + "\n");
-                               model.setRowCount(0);
+                                model.setRowCount(0);
                                 UpdateQueueTable();
                                 status[selection] = 1; //updates selected process status to finished
 
@@ -245,5 +282,15 @@ public class OS implements Runnable {
     {
         model2.insertRow(model2.getRowCount(), new Object[]{process.getId(), process.getArrivalTime(), process.getServiceTime(), process.getFinishTime(),process.getTAT(),process.getnTAT()});
     }
+
+    //pausing the threads
+   /* public void pauseThreads() throws InterruptedException {
+        /*
+        ActionListener pauseButtonListener = new OS.PauseButtonListener();
+        pauseButton.addActionListener(pauseButtonListener);
+
+        CPUOne.wait();
+    }
+*/
 
 }
