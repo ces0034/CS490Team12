@@ -19,6 +19,9 @@ public class OS implements Runnable {
     private GlobalQueue queue = new GlobalQueue(); //create a global queue
     private Semaphore sem = new Semaphore (1, true);
     private int totalProcess = 0; //get the total number of processes added to a queue
+    private static final Object lock = new Object();
+    private boolean flag = false;
+
 
     //---------------FOR: Updating the GUI
     private GUILayout ui = new GUILayout(); // create a GUILayout object to update the GUI
@@ -45,13 +48,23 @@ public class OS implements Runnable {
         pauseButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                /*try {
-                    CPUOne.wait(); //when the button is pushed
-                    CPUTwo.wait(); //when the button is pushed
+                synchronized (lock){
+                    /*while (!flag){
+                        System.out.println("Pause button is pressed.");
+                    }*/
+                    /*try {
+                        one.wait();
+                    } catch (InterruptedException interruptedException) {
+                        interruptedException.printStackTrace();
+                    }*/
+                    System.out.println("Pause button is pressed.");
+                }
+                /*
+                try {
+                    Thread.sleep(3000);
                 } catch (InterruptedException interruptedException) {
                     interruptedException.printStackTrace();
-                }*/
-                System.out.println("Pause button is pressed.");
+                }*/ //testing if threads are responding
             }
         });
     }
@@ -60,13 +73,12 @@ public class OS implements Runnable {
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                /*try {
-                    CPUOne.notify(); //when the button is pushed
-                    CPUTwo.notify(); //when the button is pushed
-                } catch (InterruptedException interruptedException) {
-                    interruptedException.printStackTrace();
-                }*/
-                System.out.println("Start button is pressed.");
+                //CPUOne.notify(); //when the button is pushed
+                //CPUTwo.notify(); //when the button is pushed
+                synchronized (lock){
+                    //CPUOne.notify();
+                    System.out.println("Start button is pressed.");
+                }
             }
         });
     }
@@ -74,7 +86,6 @@ public class OS implements Runnable {
     //---------------FOR: Users to Update
     public String filename; // a placeholder for a file (C://Users//Carolyn//IdeaProjects//Team12_Project_490//src//file.txt)
     private int timeUnit = Integer.parseInt(ui.getUnitTextField().getText()); // a time unit that can be updated by the user
-
 
 
     //----------------------------------------Functions ----------------------------------------------
@@ -94,14 +105,14 @@ public class OS implements Runnable {
     public void run() {
         GUIPack();
         addToQueue(); //add the processes  the queue
-        new Thread(CPUTwo).start(); //start thread one
-        new Thread(CPUOne).start(); //start thread two
-        synchronized(this) {
-            Pause();
-        }
-        synchronized(this) {
-            Start();
-        }
+        Thread thread1 = new Thread(CPUOne);
+        Thread thread2 = new Thread(CPUTwo);
+        thread1.start(); //start thread one
+        thread2.start(); //start thread two
+
+        //pausing and starting the threads
+        Pause();
+        Start();
     }
     //---------------FOR: Storing Processes
 
@@ -284,13 +295,14 @@ public class OS implements Runnable {
     }
 
     //pausing the threads
-   /* public void pauseThreads() throws InterruptedException {
+   /*public void pauseThreads() throws InterruptedException {
         /*
         ActionListener pauseButtonListener = new OS.PauseButtonListener();
         pauseButton.addActionListener(pauseButtonListener);
+       synchronized (CPUOne){
+           CPUOne.wait();
+       }
+    }*/
 
-        CPUOne.wait();
-    }
-*/
 
 }
