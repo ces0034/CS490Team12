@@ -8,6 +8,7 @@ import java.util.Scanner;
 import java.util.Vector;
 import java.util.concurrent.Semaphore;
 import java.lang.Thread;
+import java.text.DecimalFormat;
 
 //The powerhouse of the project. This
 
@@ -26,6 +27,7 @@ public class OS implements Runnable {
     private DefaultTableModel model = ui.getTableModel(); // to update table 1
     private DefaultTableModel model2 = ui.getTableModel2(); // to update table 2
     private JButton button = ui.getUpdateButton(); //create a button to put a listener on it
+    private DecimalFormat df = new DecimalFormat("#0.###########"); // to format the current throughput
 
     //the button listener to update the time unit
     public OS() {
@@ -218,7 +220,7 @@ public class OS implements Runnable {
                         }
                         currentThroughput = currentThroughput / time; //divides number of finished processes by time
                         JLabel ctp = ui.getThroughputLabel();
-                        ctp.setText("Current Throughput = " + currentThroughput +"ms");
+                        ctp.setText("Current Throughput = " + df.format(currentThroughput) +"ms"); //converts to decimal format and updates jLabel
                         time = time + timeUnit; //increments time
                         i++;
                         Thread.sleep(timeUnit);
