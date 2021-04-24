@@ -1,17 +1,17 @@
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class GlobalQueue {
+//A queue class that just returns most of what a queue already does but now synchronized.
+public class GlobalQueue implements Cloneable{
 
-    static Queue<Process> queue = new LinkedList<Process>();
-   /*private static GlobalQueue globalQInstance = null;
+    static Queue<Process> queue;
 
-    public static GlobalQueue getStreamInstance() {
-    if (queue== null) {
-       globalQInstance = new GlobalQueue();
+    public GlobalQueue()
+    {
+        queue = new LinkedList<>();
+
     }
-		return globalQInstance;
-}*/
+
     public Queue<Process> get()
     {
         return queue;
@@ -40,6 +40,15 @@ public class GlobalQueue {
             return process;
         }
     }
+    protected Object clone() throws CloneNotSupportedException {
+        GlobalQueue q = (GlobalQueue)super.clone();
+        for (Process process: q.get())
+        {
+            process=(Process)super.clone();
+            q.add(process);
+        }
+        return q;
+    }
 
     public Process poll()
     {
@@ -62,6 +71,7 @@ public class GlobalQueue {
             return queue.size();
         }
     }
+
 
 
 
