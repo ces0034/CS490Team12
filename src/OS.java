@@ -106,9 +106,9 @@ public class OS implements Runnable {
         GUIPack();
         //addToQueue(); //add the processes  the queue
         Thread thread1 = new Thread(CPUOne);
-        //Thread thread2 = new Thread(CPUTwo);
+        Thread thread2 = new Thread(CPUTwo);
         thread1.start(); //start thread one
-        //thread2.start(); //start thread two
+        thread2.start(); //start thread two
 
         //pausing and starting the threads
         Pause();
@@ -167,7 +167,6 @@ public class OS implements Runnable {
                                 processing = true;
                                 //selection = i;
                                 area1.setText("CPU One is currently Processing: " + process.getId() + "\n");
-                                //1++;
                                 curTimeSlice = timeSlice;
                                 //}
                             }
@@ -194,10 +193,6 @@ public class OS implements Runnable {
                                 processing = false; //stops processing
                                 curTimeSlice = timeSlice;
                             }
-                            else if(timeSlice <= 0){
-                                queue.add(process);
-                                curTimeSlice = timeSlice;
-                            }
                         }
                         System.out.println(time);
                         end = true; //sets end to true because it's easier to check if the loop shouldn't end
@@ -219,7 +214,7 @@ public class OS implements Runnable {
 
         }
     };
-    
+
     //This is CPU Two
     Runnable CPUTwo = new Runnable() {
         int i = 0;
@@ -234,42 +229,60 @@ public class OS implements Runnable {
                     double currentThroughput;
                     boolean end = false;
                     boolean processing = false;
+                    Vector<Process>processList = new Vector<Process>();
+                    try {
+                        File dataFile = new File(filename); // initialize file object
+                        Scanner dataReader = new Scanner(dataFile); // initialize reader
+                        while (dataReader.hasNextLine()) { // iterates through each line and constructs a process structure for each
+                            String data = dataReader.nextLine(); //get the next line
+                            String[] line = data.split(",", 0); //split along commas
+                            Process newProcess = new Process(line[0], line[1], line[2], line[3]);
+                            processList.add(newProcess); //add to vector
+                            totalProcess++; //add a number to the total process count
+                            System.out.println(newProcess.getId() + " " + newProcess.getPriority() + " " + newProcess.getServiceTime());
+                        }
+                        dataReader.close();
+                    }
+                    catch (FileNotFoundException e) { // notifies the user if the file can't be found
+                        System.out.println("File not found.");
+                        e.printStackTrace();
+                    }
+                    UpdateQueueTable();
+                    Process process;
                     while (!end) {
                         if (!processing) { //selects a process to run
                             int i = 0;
                             if (!queue.isEmpty()) {
-                                Process process = queue.peek();
-                                if (time >= process.getArrivalTime()) {
-                                    timeRemaining = process.getServiceTime();
-                                    processing = true;
-                                    selection = i;
-                                    area2.setText("CPU Two is currently Processing: " + process.getId() + "\n");
-                                    i++;
-
+                                double highest = 0;
+                                for (int j=0; j < totalProcess; i++){
+                                    if (time >= processList.get(i).getArrivalTime() && processList.get(i).getResponseRatio() >= highest) {
+                                        process = processList.get(i);
+                                        timeRemaining = process.getServiceTime();
+                                        processing = true;
+                                        selection = i;
+                                        area2.setText("CPU Two is currently Processing: " + process.getId() + "\n");
+                                    }
                                 }
                             }
                         }
                         if (processing) { //calculates process progress
                             timeRemaining = timeRemaining - timeUnit; //decrements remaining time
                             if (timeRemaining <= 0) { //sets process status to finished and tells the processor to select the next process
-                                Process process = queue.poll();
-
+                                Process newprocess = processList.get(selection);
                                 model.setRowCount(0);
-                                area2.setText("CPU Two just Processed: " + process.getId() + "\n");
+                                area2.setText("CPU Two just Processed: " + newprocess.getId() + "\n");
                                 UpdateQueueTable();
-
                                 status[selection] = 1; //updates selected process status to finished
-
-                                process.setFinishTime(time); //sets finish time
-                                process.setTAT(time); //sets turnaround time and normalized turnaround time
-                                addToProcessTable(process);
+                                newprocess.setFinishTime(time); //sets finish time
+                                newprocess.setTAT(time); //sets turnaround time and normalized turnaround time
+                                addToProcessTable(newprocess);
                                 processing = false; //stops processing
                             }
                         }
                         System.out.println(time);
                         end = true; //sets end to true because it's easier to check if the loop shouldn't end
                         currentThroughput = 0; //resets for incrementation
-                        for (int i = 0; i < totalProcess; i++) { //checks if process should end
+                        for (int i = 0; i < processList.size(); i++) { //checks if process should end
                             if (!queue.isEmpty()) //program continues processing until all all processes are complete
                                 end = false; //end is false if any process is unfinished
                             if (status[i] == 1)
@@ -279,7 +292,10 @@ public class OS implements Runnable {
                         JLabel ctp = ui.getThroughputLabel();
                         ctp.setText("Current Throughput = " + df.format(currentThroughput) +"ms"); //converts to decimal format and updates jLabel
                         time = time + timeUnit; //increments time
-                        i++;
+                        //i++;
+                        for(int i = 0; i < processList.size(); i++){
+                            processList.get(i).setResponseRatio(time);
+                        }
                         Thread.sleep(timeUnit);
                     }
                 }
