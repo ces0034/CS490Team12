@@ -10,6 +10,7 @@ public class Process {
     private int finishTime; //the finish time
     private double TAT; //the turn around time
     private double nTAT;
+    private double responseRatio;
 
     //process constructor
     public Process(String aTime, String ID, String sTime, String prior){ // Constructs duplicates.Process data structure
@@ -52,4 +53,12 @@ public class Process {
         nTAT = Double.parseDouble(df.format(nTAT));
         return (nTAT);
     } //gets normalized turnaround time
+
+    public void setResponseRatio(double time){
+        responseRatio = (time - arrivalTime)/serviceTime;
+    }
+
+    public double getResponseRatio(){
+        return responseRatio;
+    }
 }
